@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class CancelOrderDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
-        System.out.println("❌ Annulation de la commande suite à un échec du paiement.");
+        System.out.println("Canceling order because of payment failure...");
     }
 }

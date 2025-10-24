@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class ShipOrderDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
-        System.out.println("🚚 Expédition de la commande...");
+        System.out.println("Order shipment...");
     }
 }

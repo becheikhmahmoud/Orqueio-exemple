@@ -7,7 +7,7 @@
   xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="_OrderProcessDefs"
   targetNamespace="http://camunda.org/schema/1.0/bpmn" exporter="Camunda Modeler"
   exporterVersion="3.5.0">
-  <bpmn2:process id="Process_CommandeClient" name="Processus de commande client" isExecutable="true"  camunda:historyTimeToLive="180">
+  <bpmn2:process id="order_process" name="Order Client Process" isExecutable="true"  camunda:historyTimeToLive="180">
     <bpmn2:startEvent id="StartEvent_1" name="start">
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
     </bpmn2:startEvent>
@@ -33,7 +33,7 @@
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
     </bpmn2:serviceTask>
-    <bpmn2:exclusiveGateway id="ExclusiveGateway_2" name="check payment successfull">
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_2" name="check payment succeeded">
       <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
       <bpmn2:outgoing>Flow_0dka0zk</bpmn2:outgoing>
@@ -70,16 +70,16 @@
       targetRef="ExclusiveGateway_1" />
     <bpmn2:sequenceFlow id="SequenceFlow_3" name="Online Payment" sourceRef="ExclusiveGateway_1"
       targetRef="ServiceTask_1">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${paiementEnLigne == true}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${onlinePayment == true}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="SequenceFlow_6" sourceRef="ExclusiveGateway_1" targetRef="ServiceTask_2">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${paiementEnLigne == false}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${onlinePayment == false}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="SequenceFlow_4" sourceRef="ServiceTask_1" targetRef="ExclusiveGateway_2" />
     <bpmn2:sequenceFlow id="SequenceFlow_7" sourceRef="ServiceTask_2" targetRef="UserTask_2" />
     <bpmn2:sequenceFlow id="SequenceFlow_8" name="payment successfull"
       sourceRef="ExclusiveGateway_2" targetRef="UserTask_2">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${paiementValide == true}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${paymentValidated == true}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="Flow_0dka0zk" name="payment failed" sourceRef="ExclusiveGateway_2"
       targetRef="Activity_07aolno" />
@@ -88,7 +88,7 @@
     <bpmn2:sequenceFlow id="Flow_1sre52g" sourceRef="Activity_07aolno" targetRef="Event_0dvn7nx" />
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_CommandeClient">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="order_process">
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="152" y="202" width="36" height="36" />
         <bpmndi:BPMNLabel>

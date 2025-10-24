@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 public class DiscountDecisionDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
-        System.out.println("💡 Application d'une règle DMN de réduction...");
-        // Simuler une réduction
+        System.out.println("💡 Applying DMN discount rule...");
         execution.setVariable("discountType", "FIDELITE");
     }
 }

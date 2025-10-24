@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: orqueio-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: process_engine
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+    ports:
+      - "3306:3306"
+    command: --transaction-isolation=READ-COMMITTED
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
