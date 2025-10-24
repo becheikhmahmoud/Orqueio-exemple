@@ -1,64 +1,83 @@
 package io.orqueio.bpm.exemple.dmn.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
 public class Order {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String orderId;
-    private String premium;
+    
+    @Column(name = "client_type")
+    private String clientType;
+    
+    @Column(name = "order_amount")
+    private double orderAmount;
+    
+    @Column(name = "discount_applied")
+    private double discountApplied;
+    
+    @Column(name = "final_amount")
+    private double finalAmount;
+    
+    @Column(name = "payment_online")
+    private Boolean paymentOnline;
+    
+    @Column(name = "payment_valid")
+    private Boolean paymentValid;
+    
+    @Column(name = "status")
     private String status;
-    private boolean inStock;
-    private boolean notificationSent;
+    
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
-    public Long getId() {
-        return id;
+    // Constructeurs
+    public Order() {
+        this.createdAt = LocalDateTime.now();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Order(String clientType, double orderAmount, Boolean paymentOnline) {
+        this.clientType = clientType;
+        this.orderAmount = orderAmount;
+        this.paymentOnline = paymentOnline;
+        this.status = "CREATED";
+        this.createdAt = LocalDateTime.now();
     }
 
-    public String getOrderId() {
-        return orderId;
+    // Méthode utilitaire
+    public void calculateFinalAmount() {
+        this.finalAmount = orderAmount - (orderAmount * discountApplied / 100);
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
+    // Getters & Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getPremium() {
-        return premium;
-    }
+    public String getClientType() { return clientType; }
+    public void setClientType(String clientType) { this.clientType = clientType; }
 
-    public void setPremium(String premium) {
-        this.premium = premium;
-    }
+    public double getOrderAmount() { return orderAmount; }
+    public void setOrderAmount(double orderAmount) { this.orderAmount = orderAmount; }
 
-    public String getStatus() {
-        return status;
-    }
+    public double getDiscountApplied() { return discountApplied; }
+    public void setDiscountApplied(double discountApplied) { this.discountApplied = discountApplied; }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public double getFinalAmount() { return finalAmount; }
+    public void setFinalAmount(double finalAmount) { this.finalAmount = finalAmount; }
 
-    public boolean isInStock() {
-        return inStock;
-    }
+    public Boolean getPaymentOnline() { return paymentOnline; }
+    public void setPaymentOnline(Boolean paymentOnline) { this.paymentOnline = paymentOnline; }
 
-    public void setInStock(boolean inStock) {
-        this.inStock = inStock;
-    }
+    public Boolean getPaymentValid() { return paymentValid; }
+    public void setPaymentValid(Boolean paymentValid) { this.paymentValid = paymentValid; }
 
-    public boolean isNotificationSent() {
-        return notificationSent;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public void setNotificationSent(boolean notificationSent) {
-        this.notificationSent = notificationSent;
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
