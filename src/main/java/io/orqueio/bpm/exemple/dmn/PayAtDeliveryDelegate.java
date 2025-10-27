@@ -9,7 +9,6 @@ import io.orqueio.bpm.engine.delegate.JavaDelegate;
 public class PayAtDeliveryDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
-        System.out.println("💵 Marquage de la commande à payer à la livraison...");
-        execution.setVariable("paiementValide", true);
+        // Add your custom logic for payment at delivery processing here
     }
 }

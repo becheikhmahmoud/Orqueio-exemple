@@ -14,16 +14,16 @@
     <decisionTable id="decisionTable1" hitPolicy="FIRST">
       <input id="in1" label="Client Type">
         <inputExpression id="inExpr1" typeRef="string">
-          <text>typeClient</text>
+          <text>clientType</text>
         </inputExpression>
       </input>
       <input id="in2" label="Order Total Amount">
         <inputExpression id="inExpr2" typeRef="number">
-          <text>montantCommande</text>
+          <text>orderAmount</text>
         </inputExpression>
       </input>
 
-      <output id="out1" label="Discount (%)" name="reduction" typeRef="number" />
+      <output id="out1" label="Discount (%)" name="discount" typeRef="number" />
 
       <rule id="r1">
         <inputEntry>

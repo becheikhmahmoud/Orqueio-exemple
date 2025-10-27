@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class PrepareOrderDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
-        System.out.println("📦 Préparation de la commande...");
+        // Add your custom order preparation logic here
     }
 }

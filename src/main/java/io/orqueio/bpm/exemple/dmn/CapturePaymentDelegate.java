@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 public class CapturePaymentDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
-        System.out.println("💳 Capture du paiement en ligne...");
-        boolean paiementReussi = true; // Simule un paiement réussi
-        execution.setVariable("paiementValide", paiementReussi);
+        execution.setVariable("paymentValid", true);
     }
 }
